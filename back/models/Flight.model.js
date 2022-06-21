@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Flight schema
 const flightSchema = new Schema({
-    
+    //Flight properties
     flightNumber: Number, 
     departureDate: Date, 
     arrivalDate: Date,
@@ -11,17 +11,16 @@ const flightSchema = new Schema({
     arrivalTime: String,
     departureAirport: String,
     arrivalAirport: String,
-    passengers: [{
-        currentNumberOfPassengers: Number,
-        passengerLimit: {
+    passengerNumber: Number,
+    passengerLimit: {
             type: Number, 
-            max: [100, 'Flight cannot have more than 100 passengers']
+            max: [20, 'Flight cannot have more than 20 passengers']
         },
-        passengerId: {
-            type: Schema.Types.ObjectId,
-            ref: 'Passenger'
-        }
-    }]
+        //passengerId: {
+        //    type: Schema.Types.ObjectId,
+        //    ref: 'Passenger'
+        //}
+    
 });
 
 const Flight = mongoose.model('Flight', flightSchema, 'Flights');

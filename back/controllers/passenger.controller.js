@@ -17,7 +17,7 @@ const createPassenger = async () => {
                 }
                 return passenger._id; 
             }
-        //catches if there is an issue adding and saving the passenger
+        
         catch (err) {
             console.error(err);
             throw { status: 400, message: err};
