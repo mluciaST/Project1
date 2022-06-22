@@ -1,8 +1,8 @@
 const Flight = require('../models/Flight.model');
 
 //creates a flight
-const createFlight = async ({flightNumber, departureDate, arrivalDate, departureTime, 
-                            arrivalTime, departureAirport, arrivalAirport, passengers}) => {
+const createFlight = async ({flightNumber, departureDate, arrivalDate, departureTime, arrivalTime,
+                            departureAirport, arrivalAirport, passengerNumber, passengerLimit}) => {
     try {
         const flight = new Flight({
             flightNumber, 
@@ -12,7 +12,8 @@ const createFlight = async ({flightNumber, departureDate, arrivalDate, departure
             arrivalTime,
             departureAirport,
             arrivalAirport,
-            passengers
+            passengerNumber,
+            passengerLimit
         })
         await flight.save();
         return flight._id;
@@ -29,14 +30,14 @@ const findFlights = async () => {
         return flights;
     } catch (err) {
         console.error(err);
-        throw {status:400, message:err}
+        throw {status:400, message: err}
     }
 }
 
 //adds a flight to a passenger
 const addFlightToPassenger = async (_id, { flightNumber, _id: flightId}) => {
     try {
-        // Pushes onto the array for the field "movies", a new objext containign title, year, and movieId
+        // Pushes onto the array for "passenger", a new object containign flightNumber and flightId
         await Flight.findByIdAndUpdate(_id, { $push: { Passenger: { flightNumber, flightId } } });
     } catch (err) {
         console.error(err);
@@ -45,6 +46,7 @@ const addFlightToPassenger = async (_id, { flightNumber, _id: flightId}) => {
 }
 
 //update flight
+//delete flight
 
 
-module.exports = { createFlight, addFlightToPassenger, findFlights };
+module.exports = { createFlight, findFlights, addFlightToPassenger };
