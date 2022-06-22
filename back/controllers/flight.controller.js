@@ -25,7 +25,7 @@ const createFlight = async ({flightNumber, departureDate, arrivalDate, departure
 //finds the flights
 const findFlights = async () => {
     try {
-        const flights = await Flight.find({});
+        const flights = await Flight.find();
         return flights;
     } catch (err) {
         console.error(err);
@@ -44,6 +44,7 @@ const addFlightToPassenger = async (_id, { flightNumber, _id: flightId}) => {
     }
 }
 
+//update flight
 
 
 module.exports = { createFlight, addFlightToPassenger, findFlights };

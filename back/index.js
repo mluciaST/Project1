@@ -1,4 +1,3 @@
-const router = require('express').Router();
 const express = require('express');
 const mongoose = require('mongoose');
 //const logger = require('./middleware/logger');
@@ -12,7 +11,7 @@ app.use(express.json());
 const flightRoute = require('./routes/flight.route.js');
 const passengerRoute = require('./routes/passenger.route');
 
-router.use('/flights', flightRoute);
+app.use('/flights', flightRoute);
 //router.use('/passenger', passengerRoute);
 
 app.all('*', (req, res) => {

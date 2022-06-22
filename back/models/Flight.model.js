@@ -14,7 +14,7 @@ const flightSchema = new Schema({
     passengerNumber: Number,
     passengerLimit: {
             type: Number, 
-            max: [20, 'Flight cannot have more than 20 passengers']
+            max: [10, 'Flight cannot have more than 10 passengers']
         },
         //passengerId: {
         //    type: Schema.Types.ObjectId,
