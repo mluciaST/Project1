@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const { findFlights, addFlightToPassenger, createFlight } = require('../controllers/flight.controller');
+const { createFlight, findFlight, updateFlight, deleteFlight } = require('../controllers/flight.controller');
 
 
-
-//creates new flight
+//POST - creates new flight
 router.post('/', async (req, res) => {
     try {
         const flightID = await createFlight(req.body);
@@ -13,14 +12,35 @@ router.post('/', async (req, res) => {
     }
 });
 
-//finds flights
+//GET - view all flights
 router.get('/', async (req, res) => {
-    const allFlights = await findFlights();
+    try {
+        const allFlights = await findFlight();
         res.json(allFlights);
+    } catch (err) {
+        res.status(err?.status || 400).json(err);
+    }
+    
 });
 
-//updates a flight (by ID?)
-//delete a flight
+//PUT - updates a flight 
+router.put('/:_id', async (req, res) => {
+    try {
+        const flight = await updateFlight(req.params._id, req.body);
+        res.json({flight});
+    } catch (err) {
+        res.status(err?.status || 400).json(err);
+    }
+})
 
+//DEL - delete a flight
+router.delete('/:id', async (req, res) => {
+    try {
+        const flight = await deleteFlight(req.params.id);
+        res.json({flight});
+    } catch (err) {
+        res.status(err?.status || 400).json(err);
+    }
+})
 
 module.exports = router;

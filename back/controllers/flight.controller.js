@@ -17,6 +17,7 @@ const createFlight = async ({flightNumber, departureDate, arrivalDate, departure
         })
         await flight.save();
         return flight._id;
+    //upon any failure, display error message
     } catch (err) {
         console.error(err);
         throw { status: 400, message: err };
@@ -24,29 +25,40 @@ const createFlight = async ({flightNumber, departureDate, arrivalDate, departure
 }
 
 //finds the flights
-const findFlights = async () => {
+const findFlight = async () => {
     try {
-        const flights = await Flight.find();
-        return flights;
+        const flight = await Flight.find();
+        return flight;
+        //upon any failure, display error message
     } catch (err) {
         console.error(err);
-        throw {status:400, message: err}
+        throw {status: 400, message: err}
     }
 }
 
-//adds a flight to a passenger
-const addFlightToPassenger = async (_id, { flightNumber, _id: flightId}) => {
+
+//update flight
+const updateFlight = async (_id, updatedFlight) => {
     try {
-        // Pushes onto the array for "passenger", a new object containign flightNumber and flightId
-        await Flight.findByIdAndUpdate(_id, { $push: { Passenger: { flightNumber, flightId } } });
+        const flights = await Flight.findOneAndUpdate({ _id: _id }, updatedFlight, { new: true });
+        return flights;
     } catch (err) {
         console.error(err);
         throw { status: 400, message: err };
     }
 }
 
-//update flight
+
 //delete flight
+const deleteFlight = async (_id) => {
+    try {
+        const flights = await Flight.deleteOne({ _id: _id });
+        return flights;
+    } catch (err) {
+        console.error(err);
+        throw { status: 400, message: err };
+    }
+}
+ 
 
-
-module.exports = { createFlight, findFlights, addFlightToPassenger };
+module.exports = { createFlight, findFlight, updateFlight, deleteFlight };

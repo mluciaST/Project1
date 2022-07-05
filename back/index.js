@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 //const logger = require('./middleware/logger');
-require('dotenv').config(); // One and done so I don't need the value from require
+require('dotenv').config(); 
 
 const app = express();
 const PORT = process.env.PORT || 8080; 
@@ -9,10 +10,9 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 const flightRoute = require('./routes/flight.route.js');
-const passengerRoute = require('./routes/passenger.route');
 
+app.use(cors());
 app.use('/flights', flightRoute);
-//router.use('/passenger', passengerRoute);
 
 app.all('*', (req, res) => {
     res.status(404).send("We don't have the resource you're looking for.");
