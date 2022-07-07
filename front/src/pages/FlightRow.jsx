@@ -43,7 +43,7 @@ export const FlightRow = ({flight, flights, setFlights}) => {
         
     }
 
-    if (isEdit) {
+    if (isEdit) { 
         return (      
             <tr>
                 <td><Center>{isEdit ? <input className="edit-input" value={flightData.flightNumber} onChange={(e) => setFlightData({...flightData, flightNumber: e.target.value})}/> : flight.flightNumber }</Center></td>
