@@ -5,7 +5,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
 
 
 export const FlightRow = ({flight, flights, setFlights}) => {
@@ -43,15 +42,28 @@ export const FlightRow = ({flight, flights, setFlights}) => {
         
     }
 
+    const convertDateToString = (date) => {
+        let month = (date.getMonth() + 1).toString();
+        let day = date.getDate().toString();
+        const year = date.getFullYear();
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+        return [month, day, year].join('/');
+    }
+
     if (isEdit) { 
         return (      
             <tr>
-                <td><Center>{isEdit ? <input className="edit-input" value={flightData.flightNumber} onChange={(e) => setFlightData({...flightData, flightNumber: e.target.value})}/> : flight.flightNumber }</Center></td>
+                <td><Center><input className="edit-input" value={flightData.flightNumber} onChange={(e) => setFlightData({...flightData, flightNumber: e.target.value})}/> </Center></td>
 
                 <td><Center>{
                 isEdit 
                 ? <input className="edit-input" value={new Date(flightData.departureDate)?.toISOString()?.substring(0, 10)} type="date" onChange={(e) => setFlightData({...flightData, departureDate: e.target.value})} />
-                : new Date(flight.departureDate)?.toLocaleString('en-US', {timeZone: 'UTC'})?.split('T')[0]
+                : convertDateToString(new Date(flight.departureDate))
                 }</Center></td>
 
                 {/* new below */}
@@ -86,10 +98,10 @@ export const FlightRow = ({flight, flights, setFlights}) => {
 
             <tr>
                 <td><Center>{flightData.flightNumber}</Center></td>
-                <td><Center>{flightData.departureDate}</Center></td>
+                <td><Center>{convertDateToString(new Date(flight.departureDate))}</Center></td>
                 <td><Center>{flightData.departureTime}</Center></td>
                 <td><Center>{flightData.departureAirport}</Center></td>
-                <td><Center>{flightData.arrivalDate}</Center></td>
+                <td><Center>{convertDateToString(new Date(flight.arrivalDate))}</Center></td>
                 <td><Center>{flightData.arrivalTime}</Center></td>
                 <td><Center>{flightData.arrivalAirport}</Center></td>
                 <td><Center>{flightData.passengerNumber}</Center></td>
