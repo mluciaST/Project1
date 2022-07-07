@@ -1,8 +1,7 @@
 import './App.css';
-//import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppNav } from './features';
-import { Landing, Error, View, Delete } from './pages';
+import { Landing, Error, View, Update, Delete } from './pages';
 import { Form } from './components/Form';
 
 
@@ -16,7 +15,8 @@ const App = () => {
                 <Route path="/" element={<Landing />} />
                 <Route path="/addflight" element={<Form />} />
                 <Route path="/viewflights" element={<View />} /> 
-                <Route path="/removeflights" element={<Delete />} />  
+                {/* <Route path="/updateflights" element={<Update />} />
+                <Route path="/removeflights" element={<Delete />} />   */}
                 <Route path="*" element={<Error />} />
             </Routes>
         </BrowserRouter>

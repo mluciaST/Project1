@@ -1,87 +1,137 @@
 import { Center } from "../StyledComponents/StyledComponents";
-
+import {  useRef } from 'react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export const Form = () => {
+
+    const flightNumberRef = useRef();
+    const departureDateRef = useRef()
+    const departureTimeRef = useRef()
+    const departureAirportRef = useRef()
+    const arrivalDateRef = useRef()
+    const arrivalTimeRef = useRef()
+    const arrivalAirportRef = useRef()
+    const passengerNumberRef = useRef()
+    const passengerLimitRef = useRef()
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        let currentPassengerLimit = passengerLimitRef.current.value;
+        let currentPassengerNumber = passengerNumberRef.current.value;
+        const exceedPassengerLimit = currentPassengerNumber - currentPassengerLimit;
+
+        if (exceedPassengerLimit > 0) {
+            alert("Number of passengers cannot be greater than Passenger Limit");
+        } 
+        else {
+            try {
+                await axios.post('http://localhost:8042/flights', 
+                {
+    
+                        flightNumber: flightNumberRef.current.value,
+                        departureDate: departureDateRef.current.value,
+                        departureTime: departureTimeRef.current.value,
+                        departureAirport: departureAirportRef.current.value,
+                        arrivalDate: arrivalDateRef.current.value,
+                        arrivalTime: arrivalTimeRef.current.value,
+                        arrivalAirport: arrivalAirportRef.current.value,
+                        passengerNumber: passengerNumberRef.current.value,
+                        passengerLimit: passengerLimitRef.current.value
+      
+    
+                });
+                navigate('/viewflights');
+            } catch (error) {
+                console.log('Oh no! Something went wrong');
+            }
+        }
+
+        
+    }
+
     return (
-        <form>
+        <form className="MyForm" onSubmit={handleSubmit}>
             <Center><h3>Add a Flight</h3></Center>
             <br />
             <Center>
-                <label htmlFor="Flight">Flight Number:   </label>
+                <label htmlFor="flightNumber">Flight Number:   </label>
                     <div>
-                        <input id="Flight Number" type="text" placeholder="Flight Number"/> 
+                        <input id="flightNumber" type="text" placeholder="Flight Number" ref={flightNumberRef}/> 
                     </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Departure Date">Departure Date:  </label>
+                <label htmlFor="departureDate">Departure Date:  </label>
                 <div>
-                    <input id="Departure Date" type="date" placeholder="Departure Date"/> 
+                    <input id="departureDate" type="date" placeholder="Departure Date" ref={departureDateRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Departure Time">Departure Time:  </label>
+                <label htmlFor="departureTime">Departure Time:  </label>
                 <div>
-                    <input id="Departure Time" type="time" placeholder="Departure Time"/> 
+                    <input id="departureTime" type="time" placeholder="Departure Time" ref={departureTimeRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Departure Airport">Departure Airport:  </label>
+                <label htmlFor="departureAirport">Departure Airport:  </label>
                 <div>
-                    <input id="Departure Airport" type="text" placeholder="Departure Airport"/> 
+                    <input id="departureAirport" type="text" placeholder="Departure Airport" ref={departureAirportRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Arival Date">Arrival Date:  </label>
+                <label htmlFor="arrivalDate">Arrival Date:  </label>
                 <div>
-                    <input id="Arrival Date" type="date" placeholder="Arrival Date"/> 
+                    <input id="arrivalDate" type="date" placeholder="Arrival Date" ref={arrivalDateRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Arival Time">Arrival Time:  </label>
+                <label htmlFor="arrivalTime">Arrival Time:  </label>
                 <div>
-                    <input id="Arrival Time" type="time" placeholder="Arrival Time"/> 
+                    <input id="arrivalTime" type="time" placeholder="Arrival Time" ref={arrivalTimeRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Arival Airport">Arrival Airport:  </label>
+                <label htmlFor="arrivalAirport">Arrival Airport:  </label>
                 <div>
-                    <input id="Arrival Airport" type="text" placeholder="Arrival Airport"/> 
+                    <input id="arrivalAirport" type="text" placeholder="Arrival Airport" ref={arrivalAirportRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Passenger Number">Passenger Number:  </label>
+                <label htmlFor="passengerNumber">Passenger Number:  </label>
                 <div>
-                    <input id="Passenger Number" type="number" placeholder="Passenger Number"/> 
+                    <input id="passengerNumber" type="number" placeholder="Passenger Number" ref={passengerNumberRef}/> 
                 </div>
             </Center>
 
             <br />
 
             <Center>
-                <label htmlFor="Passenger Limit">Passenger Limit:  </label>
+                <label htmlFor="passengerLimit">Passenger Limit:  </label>
                 <div>
-                    <input id="Passenger Limit" type="number" placeholder="Passenger Limit"/> 
+                    <input id="passengerLimit" type="number" placeholder="Passenger Limit" ref={passengerLimitRef}/> 
                 </div>
             </Center>
 
@@ -92,8 +142,6 @@ export const Form = () => {
                     <input type="submit" value="Add Flight" />
                 </div>
             </Center>
-
-            
 
         </form>
     );

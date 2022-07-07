@@ -15,6 +15,9 @@ const createFlight = async ({flightNumber, departureDate, arrivalDate, departure
             passengerNumber,
             passengerLimit
         })
+        if (Number(flight.passengerNumber) > Number(flight.passengerLimit)) {
+            throw "Number of passengers cannot be greater than Passenger Limit";
+        }
         await flight.save();
         return flight._id;
     //upon any failure, display error message
@@ -38,9 +41,14 @@ const findFlight = async () => {
 
 
 //update flight
-const updateFlight = async (_id, updatedFlight) => {
+const updateFlight = async (updatedFlight) => {
     try {
-        const flights = await Flight.findOneAndUpdate({ _id: _id }, updatedFlight, { new: true });
+        // console.log(updatedFlight);
+        if (Number(updatedFlight.passengerNumber) > Number(updatedFlight.passengerLimit)) {
+            throw "Number of passengers cannot be greater than Passenger Limit";
+        }
+        const flights = await Flight.findOneAndUpdate({_id: updatedFlight._id}, updatedFlight, { new: true });
+        console.log(flights);
         return flights;
     } catch (err) {
         console.error(err);

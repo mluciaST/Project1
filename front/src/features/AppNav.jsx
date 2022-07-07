@@ -24,9 +24,13 @@ export const AppNav = () => {
                     <NavLink to="/viewflights" transitionColor="lightgrey">View Flights</NavLink>
                 </NavItem>
 
+                {/* <NavItem>
+                    <NavLink to="/updateflights" transitionColor="lightgrey">Update Flights</NavLink>
+                </NavItem>
+
                 <NavItem>
                     <NavLink to="/removeflights" transitionColor="lightgrey">Remove Flights</NavLink>
-                </NavItem>
+                </NavItem> */}
             </NavSection>
         </Nav>
     );

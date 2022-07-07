@@ -24,9 +24,9 @@ router.get('/', async (req, res) => {
 });
 
 //PUT - updates a flight 
-router.put('/:_id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-        const flight = await updateFlight(req.params._id, req.body);
+        const flight = await updateFlight(req.body);
         res.json({flight});
     } catch (err) {
         res.status(err?.status || 400).json(err);

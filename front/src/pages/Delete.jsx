@@ -21,10 +21,10 @@ export const Delete = () => {
                     <Center><input id="Flight ID" type="text" placeholder="Flight ID"/></Center>
                 </div>
                 <Center>
-                <div>
-                    <input type="submit" value="Add Flight" />
-                </div>
-            </Center>
+                    <div>
+                        <input type="submit" value="Delete Flight" />
+                    </div>
+                </Center>
             </div>
             {/* Transform the flight array into an array of JSX elements */}
             {flights.map((flight) => {
