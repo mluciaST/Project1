@@ -8,24 +8,27 @@ export const Landing = () => {
         <div>
             <Center><h2>Welcome to Mango Airlines! </h2></Center>
 
-            <Center><p>Smooth travel is a click away. </p></Center>
+            <Center><p><strong><em>Smooth travel is a click away.</em></strong></p></Center>
 
-            <p id="homeParagraph">
+            <p id="homeParagraph"><em>
                 
-                We at Mango Airlines want your travel to be as seamless as possible. </p>
+                We at Mango Airlines want your travel to be as seamless as possible. 
+                
+                </em></p>
                 
 
-                <p id="homeParagraph">
+            <p id="homeParagraph"><em>
                 Whether you are booking your destination wedding, viting friends and family, or going on the adventure of your dreams, Mango Airlines will take you there. Forget your 
-                worries of squashed seating, loud companions, and stale snacks - our 100% hammock-based exerience gently soothes our passengers as they fly, 
+                worries of squashed seating, loud companions, and stale snacks - our 100% hammock-based experience gently soothes our passengers as they fly, 
                 each with a fresh-made Mango Smoothie in hand. 
 
-                </p>
-                <p id="homeParagraph">
+                </em></p>
+
+            <p id="homeParagraph"><em>
 
                 Use this nagivation to add, view, update or remove your flights at ease.  
                 
-            </p>
+                </em></p>
 
             <br />
 

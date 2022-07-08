@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppNav } from './features';
-import { Landing, Error, View, Update, Delete } from './pages';
+import { Landing, Error, View } from './pages';
 import { Form } from './components/Form';
 
 
