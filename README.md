@@ -2,8 +2,8 @@
 
 ## Description:
 
-This project will create an airline database using MongoDB/Mongoose from the perspective of management with all necessary permissions.
-This will work in conjunction with React and CSS for a UI that will have the functionality to add, update, view, and delete flight information.
+This project is of an airline database using MongoDB/Mongoose from the perspective of management with all necessary permissions.
+This works in conjunction with React and CSS for a UI that has the functionality to add, update, view, and delete flight information.
 
 ### Each flight will have the following:
 
@@ -24,6 +24,14 @@ This will work in conjunction with React and CSS for a UI that will have the fun
     -Express.js
     -React
     -CSS/Styled-Components
+    
+### Updates as of 7/7/2022
+    -UI is finalized with home page, add flight page, and view flights page
+        -the ability to edit and delete flights using MUI icons is included in the view flights page at the end of each row
+        -while in edit mode, the edit and delete buttons change to confirm and cancel buttons to save or cancel edits
+    -All CRUD functions working properly and connected to front end
+    -Validation added to the passenger limit requirement
+    -Cosmetic updates to website in general to clean up user experience and make the layout more intuitive
 
 ### Updates as of 6/22/2022
 
